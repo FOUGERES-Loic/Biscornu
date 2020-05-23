@@ -1,0 +1,18 @@
+// Define configuration options
+const options = {
+    options: {
+        debug: true
+    },
+    connection: {
+        reconnect:  true
+    },
+    identity: {
+        username: <BOT_TWITCH_USERNAME>,
+        password: <OAUTH_TOKEN>
+    },
+    channels: [
+        <TWITCH_CHAINS_TO_JOIN>
+    ]
+};
+
+module.exports = options;

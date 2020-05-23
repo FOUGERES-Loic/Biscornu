@@ -1,0 +1,15 @@
+{
+  "name": "biscornu",
+  "version": "1.0.0",
+  "description": "twitch bot Biscornu",
+  "main": "biscornu.js",
+  "dependencies": {
+    "tmi.js": "^1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
