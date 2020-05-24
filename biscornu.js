@@ -33,12 +33,12 @@ function onMessageHandler (target, context, msg, self) {
             case "rolls":
                 client.say(target, roll(param, context['display-name'], true));
                 break;
-            case "help":
+            /*case "help":
                 client.say(target, `Désolé, pas encore de page d'aide!`);
-                break;
+                break;*/
             default:
                 executed = false;
-                client.say(target, `Commande '${command}' non reconnue. Tapez ${prefix}help pour la liste des commandes de ` + client.getUsername());
+            //    client.say(target, `Commande '${command}' non reconnue. Tapez ${prefix}help pour la liste des commandes de ` + client.getUsername());
         }
         if (executed) {
             console.log(`* Executed ${command} command`);
@@ -65,10 +65,14 @@ function roll (param, username, multiple) {
     if (!param) {
         param = "1d20";
     }
-    const bonusParts = param.split('+');
+    const separator = param.indexOf('-') !== -1 ? '-' : '+';
+    const bonusParts = param.split(separator);
     const parts = bonusParts[0].trim().split('d');
 
-    const bonus = bonusParts.length === 2 && Number.isInteger(bonusIntValue = parseInt(bonusParts[1])) ? bonusIntValue = parseInt(bonusParts[1]) : 0;
+    let bonus = bonusParts.length === 2 && Number.isInteger(bonusIntValue = parseInt(bonusParts[1])) ? bonusIntValue = parseInt(bonusParts[1]) : 0;
+    if (separator === '-') {
+        bonus = 0 - bonus;
+    }
 
     if (parts.length !== 2 || parseInt(parts[1]) === 0 || !Number.isInteger(parseInt(parts[0])) && parts[0] !== '' || !Number.isInteger(parseInt(parts[1]))) {
         return `Bien tenté, ${username}... mais non.`;
